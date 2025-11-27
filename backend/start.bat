@@ -5,19 +5,8 @@ echo ====================================
 echo.
 
 REM Verificar si existe el archivo .env
-if not exist .env (
-    echo [ERROR] No se encontro el archivo .env
-    echo Por favor crea el archivo .env con las credenciales de SQL Server
-    echo.
-    echo Ejemplo:
-    echo DB_SERVER=localhost
-    echo DB_DATABASE=SISTEMA_ELECTORAL
-    echo DB_USER=sa
-    echo DB_PASSWORD=tu_contraseña
-    echo DB_DRIVER=ODBC Driver 17 for SQL Server
-    echo.
-    pause
-    exit /b 1
+if not exist .env if not exist config.env (
+    echo [ADVERTENCIA] No se encontro .env ni config.env. Se usaran valores por defecto.
 )
 
 echo Verificando dependencias...
@@ -36,7 +25,7 @@ echo.
 echo Iniciando servidor en http://localhost:8000
 echo Presiona Ctrl+C para detener el servidor
 echo.
-python -m uvicorn main:app --reload --port 8000
+python -m uvicorn backend.main:app --reload --port 8000
 
 pause
 

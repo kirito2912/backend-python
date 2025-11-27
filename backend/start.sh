@@ -6,18 +6,8 @@ echo "===================================="
 echo ""
 
 # Verificar si existe el archivo .env
-if [ ! -f .env ]; then
-    echo "[ERROR] No se encontró el archivo .env"
-    echo "Por favor crea el archivo .env con las credenciales de SQL Server"
-    echo ""
-    echo "Ejemplo:"
-    echo "DB_SERVER=localhost"
-    echo "DB_DATABASE=SISTEMA_ELECTORAL"
-    echo "DB_USER=sa"
-    echo "DB_PASSWORD=tu_contraseña"
-    echo "DB_DRIVER=ODBC Driver 17 for SQL Server"
-    echo ""
-    exit 1
+if [ ! -f .env ] && [ ! -f config.env ]; then
+    echo "[ADVERTENCIA] No se encontró .env ni config.env. Se usarán valores por defecto."
 fi
 
 echo "Verificando dependencias..."
@@ -35,5 +25,5 @@ echo ""
 echo "Iniciando servidor en http://localhost:8000"
 echo "Presiona Ctrl+C para detener el servidor"
 echo ""
-python3 -m uvicorn main:app --reload --port 8000
+python3 -m uvicorn backend.main:app --reload --port 8000
 
