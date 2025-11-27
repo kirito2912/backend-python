@@ -23,6 +23,7 @@ from backend.routers.resultados import router as resultados_router, router_admin
 from backend.routers.processing import router as processing_router
 from backend.routers.analysis import router as analysis_router
 from backend.routers.training import router as training_router
+from backend.routers.admin import router as admin_router
 
 app.include_router(auth_router)
 app.include_router(votantes_router)
@@ -33,6 +34,7 @@ app.include_router(resultados_admin_router)
 app.include_router(processing_router)
 app.include_router(analysis_router)
 app.include_router(training_router)
+app.include_router(admin_router)
 
 @app.get("/health")
 async def health():
